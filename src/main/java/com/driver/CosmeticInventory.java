@@ -15,6 +15,8 @@ public class CosmeticInventory {
 
     public void updateQuantity(String cosmeticType, int quantityChange) {
     	// your code goes here
+        cosmetics.computeIfAbsent(cosmeticType, key -> new AtomicInteger(0)).getAndAdd(quantityChange);
+        totalQuantity.getAndAdd(quantityChange);
     }
 
     public int getTotalQuantity() {
